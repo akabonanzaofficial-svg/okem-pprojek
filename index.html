@@ -1,0 +1,1431 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>InfoPesantren.online — Portal Berita & Inspirasi Islami</title>
+  <meta name="description" content="InfoPesantren.online — Portal berita, artikel, opini, dan inspirasi Islami terkini." />
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green-900: #064e3b;
+      --green-800: #065f46;
+      --green-700: #047857;
+      --green-600: #0d9488;
+      --green-500: #10b981;
+      --green-400: #34d399;
+      --green-100: #d1fae5;
+      --green-50:  #ecfdf5;
+      --emerald:   #059669;
+      --teal:      #0d9488;
+      --gold-600:  #b45309;
+      --gold-500:  #d97706;
+      --gold-400:  #f59e0b;
+      --gold-300:  #fcd34d;
+      --gold-100:  #fef3c7;
+      --cream:     #fefdf8;
+      --sand-50:   #faf8f3;
+      --sand-100:  #f5f1e8;
+      --ink-900:   #1a2e25;
+      --ink-700:   #374151;
+      --ink-500:   #6b7280;
+      --ink-300:   #d1d5db;
+      --white:     #ffffff;
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 20px;
+      --shadow-sm: 0 1px 3px rgba(6,78,59,0.08);
+      --shadow:    0 4px 16px rgba(6,78,59,0.10);
+      --shadow-lg: 0 12px 40px rgba(6,78,59,0.15);
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --max-width: 1200px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--ink-900);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== Typography ===== */
+    h1, h2, h3, h4 { line-height: 1.25; font-weight: 700; color: var(--green-900); }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    h2 { font-size: clamp(1.5rem, 3.5vw, 2.2rem); }
+    h3 { font-size: 1.25rem; }
+
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--green-600);
+      margin-bottom: 8px;
+    }
+
+    .section-tag::before {
+      content: '';
+      width: 24px; height: 2px;
+      background: var(--gold-400);
+      border-radius: 2px;
+    }
+
+    .section-title { margin-bottom: 40px; text-align: center; }
+    .section-title h2 { margin-bottom: 8px; }
+    .section-title p { color: var(--ink-500); font-size: 1.05rem; }
+
+    /* ===== Top Bar ===== */
+    .topbar {
+      background: var(--green-900);
+      color: var(--green-100);
+      font-size: 0.82rem;
+      padding: 6px 0;
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .topbar-left { display: flex; gap: 16px; align-items: center; }
+    .topbar-left span { opacity: 0.9; }
+    .topbar-right { display: flex; gap: 14px; }
+    .topbar-right a {
+      opacity: 0.8;
+      transition: opacity var(--transition);
+    }
+    .topbar-right a:hover { opacity: 1; color: var(--gold-300); }
+
+    /* ===== Header / Navbar ===== */
+    .header {
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      transition: box-shadow var(--transition);
+    }
+    .header.scrolled { box-shadow: var(--shadow); }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 42px; height: 42px;
+      background: linear-gradient(135deg, var(--green-700), var(--green-500));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 2px 8px rgba(6,78,59,0.25);
+    }
+    .logo-icon svg { width: 24px; height: 24px; }
+    .logo-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .logo-text strong {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--green-800);
+      letter-spacing: -0.02em;
+    }
+    .logo-text span {
+      font-size: 0.68rem;
+      color: var(--gold-500);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 4px;
+      align-items: center;
+    }
+    .nav-menu a {
+      padding: 8px 18px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink-700);
+      transition: all var(--transition);
+      position: relative;
+    }
+    .nav-menu a:hover {
+      color: var(--green-700);
+      background: var(--green-50);
+    }
+    .nav-menu a.active {
+      color: var(--green-700);
+      background: var(--green-100);
+    }
+
+    .nav-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--sand-50);
+      border: 1px solid var(--ink-300);
+      border-radius: 24px;
+      padding: 6px 16px;
+      transition: border-color var(--transition);
+    }
+    .nav-search:focus-within { border-color: var(--green-500); }
+    .nav-search input {
+      border: none; background: none; outline: none;
+      font-size: 0.88rem; width: 140px; color: var(--ink-700);
+      font-family: inherit;
+    }
+    .nav-search svg { width: 16px; height: 16px; color: var(--ink-500); }
+
+    .nav-toggle {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      width: 36px; height: 36px;
+      flex-direction: column; justify-content: center; gap: 5px;
+    }
+    .nav-toggle span {
+      width: 24px; height: 2.5px;
+      background: var(--green-800);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+
+    /* ===== Hero ===== */
+    .hero {
+      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-800) 50%, var(--green-700) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 60px 0 70px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60%; right: -10%;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(16,185,129,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; left: -5%;
+      width: 360px; height: 360px;
+      background: radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .hero-content h1 {
+      color: var(--white);
+      margin-bottom: 18px;
+    }
+    .hero-content h1 .accent { color: var(--gold-300); }
+    .hero-content p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.1rem;
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+    .hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: all var(--transition);
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--gold-400);
+      color: var(--green-900);
+    }
+    .btn-primary:hover {
+      background: var(--gold-300);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245,158,11,0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,0.4);
+    }
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .hero-image {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      aspect-ratio: 4 / 3;
+    }
+    .hero-image img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(6,78,59,0.4), transparent 50%);
+    }
+
+    .hero-badge {
+      position: absolute;
+      bottom: 20px; left: 20px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 2;
+    }
+    .hero-badge-dot {
+      width: 10px; height: 10px;
+      background: #ef4444;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .hero-badge span { font-size: 0.82rem; font-weight: 700; color: var(--green-900); }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    /* ===== Breaking News Ticker ===== */
+    .ticker {
+      background: var(--gold-100);
+      border-top: 1px solid var(--gold-300);
+      border-bottom: 1px solid var(--gold-300);
+      overflow: hidden;
+      padding: 10px 0;
+    }
+    .ticker .container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .ticker-label {
+      background: var(--green-800);
+      color: var(--white);
+      padding: 4px 14px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .ticker-track {
+      overflow: hidden;
+      flex: 1;
+    }
+    .ticker-content {
+      display: inline-flex;
+      gap: 40px;
+      white-space: nowrap;
+      animation: tickerScroll 30s linear infinite;
+      font-size: 0.88rem;
+      color: var(--ink-700);
+    }
+    .ticker-content span { font-weight: 500; }
+    .ticker-content span::before { content: '◆'; color: var(--green-500); margin-right: 8px; font-size: 0.65rem; }
+
+    @keyframes tickerScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ===== Section Spacing ===== */
+    section { padding: 64px 0; }
+
+    /* ===== Berita (Featured News) ===== */
+    .berita-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .card-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+    }
+    .card-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .card:hover .card-image img { transform: scale(1.05); }
+
+    .card-category {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: var(--green-700);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .card-category.gold { background: var(--gold-500); }
+
+    .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+    .card-body h3 { margin-bottom: 8px; transition: color var(--transition); }
+    .card:hover .card-body h3 { color: var(--green-600); }
+    .card-body p { color: var(--ink-500); font-size: 0.92rem; margin-bottom: 14px; flex: 1; }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.8rem;
+      color: var(--ink-500);
+    }
+    .card-meta span { display: flex; align-items: center; gap: 4px; }
+    .card-meta svg { width: 14px; height: 14px; }
+
+    .card-featured .card-image { aspect-ratio: 16 / 11; }
+    .card-featured .card-body h3 { font-size: 1.5rem; }
+    .card-featured .card-body p { font-size: 1rem; }
+
+    .berita-side {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .card-small {
+      display: flex;
+      gap: 14px;
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+    .card-small:hover {
+      box-shadow: var(--shadow);
+      transform: translateX(4px);
+    }
+    .card-small-img {
+      width: 130px; min-height: 100px;
+      flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+    .card-small-img img { width: 100%; height: 100%; object-fit: cover; }
+    .card-small-body { padding: 12px 14px 12px 0; display: flex; flex-direction: column; justify-content: center; }
+    .card-small-body h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink-900);
+      margin-bottom: 6px;
+      line-height: 1.35;
+    }
+    .card-small:hover .card-small-body h4 { color: var(--green-600); }
+    .card-small-body .card-meta { font-size: 0.74rem; }
+
+    /* ===== Artikel Section ===== */
+    .artikel-section { background: var(--sand-50); }
+
+    .artikel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    /* ===== Opini Section ===== */
+    .opini-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .opini-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+      position: relative;
+      border-left: 4px solid var(--green-500);
+    }
+    .opini-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-3px);
+    }
+    .opini-quote {
+      font-size: 2.5rem;
+      color: var(--green-100);
+      line-height: 1;
+      font-family: Georgia, serif;
+      margin-bottom: -12px;
+    }
+    .opini-card h3 { margin-bottom: 10px; }
+    .opini-card p { color: var(--ink-500); font-size: 0.95rem; margin-bottom: 18px; }
+    .opini-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .opini-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--green-600), var(--green-400));
+      display: flex; align-items: center; justify-content: center;
+      color: var(--white); font-weight: 700; font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .opini-author-info strong { display: block; font-size: 0.9rem; color: var(--ink-900); }
+    .opini-author-info span { font-size: 0.78rem; color: var(--ink-500); }
+
+    /* ===== Inspirasi Section ===== */
+    .inspirasi-section {
+      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-800) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .inspirasi-section::before {
+      content: '';
+      position: absolute;
+      top: 20%; right: -5%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .inspirasi-section .section-title h2 { color: var(--white); }
+    .inspirasi-section .section-title p { color: rgba(255,255,255,0.7); }
+    .inspirasi-section .section-tag { color: var(--gold-300); }
+
+    .inspirasi-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .inspirasi-card {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .inspirasi-card:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-4px);
+      border-color: rgba(255,255,255,0.3);
+    }
+    .inspirasi-card .card-image { aspect-ratio: 16 / 10; }
+    .inspirasi-card .card-body { padding: 22px; }
+    .inspirasi-card .card-body h3 { color: var(--white); }
+    .inspirasi-card .card-body p { color: rgba(255,255,255,0.7); }
+    .inspirasi-card .card-meta { color: rgba(255,255,255,0.5); }
+    .inspirasi-card .card-category { background: var(--gold-500); }
+
+    /* ===== Newsletter ===== */
+    .newsletter {
+      background: var(--gold-100);
+      border-radius: var(--radius-lg);
+      padding: 48px 40px;
+      text-align: center;
+      margin: 64px 0 0;
+    }
+    .newsletter h2 { color: var(--green-900); margin-bottom: 10px; }
+    .newsletter p { color: var(--ink-700); margin-bottom: 24px; font-size: 1.05rem; }
+    .newsletter-form {
+      display: flex;
+      max-width: 480px;
+      margin: 0 auto;
+      gap: 10px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 12px 20px;
+      border: 2px solid var(--ink-300);
+      border-radius: 24px;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+      transition: border-color var(--transition);
+    }
+    .newsletter-form input:focus { border-color: var(--green-500); }
+    .newsletter-form button {
+      padding: 12px 28px;
+      background: var(--green-700);
+      color: var(--white);
+      border: none;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background var(--transition);
+      font-family: inherit;
+      white-space: nowrap;
+    }
+    .newsletter-form button:hover { background: var(--green-800); }
+
+    /* ===== Footer ===== */
+    .footer {
+      background: var(--green-900);
+      color: rgba(255,255,255,0.8);
+      padding: 56px 0 0;
+      margin-top: 64px;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+    .footer-brand .logo-text strong { color: var(--white); }
+    .footer-brand .logo-text span { color: var(--gold-300); }
+    .footer-brand p {
+      margin-top: 16px;
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.65);
+      max-width: 320px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .footer-social a {
+      width: 38px; height: 38px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all var(--transition);
+    }
+    .footer-social a:hover {
+      background: var(--gold-400);
+      transform: translateY(-2px);
+    }
+    .footer-social svg { width: 18px; height: 18px; color: var(--white); }
+
+    .footer-col h4 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+      transition: color var(--transition);
+    }
+    .footer-col a:hover { color: var(--gold-300); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 20px 0;
+      text-align: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .footer-bottom strong { color: var(--gold-300); }
+
+    /* ===== Page System ===== */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .page-header {
+      background: linear-gradient(135deg, var(--green-800), var(--green-600));
+      padding: 50px 0 44px;
+      text-align: center;
+    }
+    .page-header h1 { color: var(--white); margin-bottom: 8px; }
+    .page-header p { color: rgba(255,255,255,0.8); }
+
+    .breadcrumb {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.6);
+      margin-top: 16px;
+    }
+    .breadcrumb a { color: var(--gold-300); }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 968px) {
+      .hero .container { grid-template-columns: 1fr; gap: 32px; }
+      .berita-grid { grid-template-columns: 1fr; }
+      .artikel-grid { grid-template-columns: repeat(2, 1fr); }
+      .inspirasi-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu, .nav-search { display: none; }
+      .nav-menu.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--white);
+        padding: 16px;
+        box-shadow: var(--shadow);
+        gap: 4px;
+      }
+      .nav-menu.open a { width: 100%; padding: 12px 18px; }
+      .nav-toggle { display: flex; }
+
+      .opini-grid { grid-template-columns: 1fr; }
+      .artikel-grid { grid-template-columns: 1fr; }
+      .inspirasi-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .newsletter-form { flex-direction: column; }
+      .topbar-right { display: none; }
+
+      section { padding: 44px 0; }
+      .newsletter { padding: 32px 20px; }
+    }
+
+    /* ===== Reveal Animation ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+  <meta property="og:image" content="https://bolt.new/static/og_default.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
+</head>
+<body>
+
+  <!-- ===== Top Bar ===== -->
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <span>📅 <span id="todayDate">Ahad, 11 Oktober 2026</span></span>
+        <span>🕌 Jakarta — Subuh 04:18 · Dzuhur 11:37</span>
+      </div>
+      <div class="topbar-right">
+        <a href="#" onclick="goPage('home');return false;">Beranda</a>
+        <a href="#">Tentang Kami</a>
+        <a href="#">Kontak</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== Header ===== -->
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="#" class="logo" onclick="goPage('home');return false;">
+        <div class="logo-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M3 7v14M21 7v14M6 21V11l6-4 6 4v10M9 21v-4h6v4"/>
+            <circle cx="12" cy="8" r="1.5" fill="white" stroke="none"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <strong>InfoPesantren</strong>
+          <span>.ONLINE</span>
+        </div>
+      </a>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#" class="active" data-page="home" onclick="goPage('home');return false;">Home</a></li>
+        <li><a href="#" data-page="berita" onclick="goPage('berita');return false;">Berita</a></li>
+        <li><a href="#" data-page="artikel" onclick="goPage('artikel');return false;">Artikel</a></li>
+        <li><a href="#" data-page="opini" onclick="goPage('opini');return false;">Opini</a></li>
+        <li><a href="#" data-page="inspirasi" onclick="goPage('inspirasi');return false;">Inspirasi</a></li>
+      </ul>
+
+      <div class="nav-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Cari berita..." />
+      </div>
+
+      <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- ============ HOME PAGE =================== -->
+  <!-- ========================================== -->
+  <div class="page active" id="page-home">
+
+    <!-- Hero -->
+    <section class="hero" style="padding-top:60px;">
+      <div class="container">
+        <div class="hero-content">
+          <span class="section-tag" style="color:var(--gold-300);">Portal Islami Terkini</span>
+          <h1>Warta & Inspirasi<br><span class="accent">Dunia Pesantren</span></h1>
+          <p>Sumber terpercaya untuk berita, artikel, opini, dan kisah inspiratif dari santri, kiai, dan pesantren seluruh Nusantara.</p>
+          <div class="hero-buttons">
+            <a href="#" class="btn btn-primary" onclick="goPage('berita');return false;">
+              Baca Berita Terbaru
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+            <a href="#" class="btn btn-outline" onclick="goPage('inspirasi');return false;">Kisah Inspiratif</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="https://images.pexels.com/photos/8332107/pexels-photo-8332107.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Masjid bercahaya di malam hari" />
+          <div class="hero-badge">
+            <div class="hero-badge-dot"></div>
+            <span>Live: Muharram 1448 H</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Breaking News Ticker -->
+    <div class="ticker">
+      <div class="container">
+        <div class="ticker-label">Berita Terkini</div>
+        <div class="ticker-track">
+          <div class="ticker-content">
+            <span>Pesantren Tebuireng gelar Mahasantri Fest 2026</span>
+            <span>KH. Ahmad Mustofa Bisri terima penghargaan tokoh dakwah nasional</span>
+            <span>Santri Pondok Modern Darussalam menang Olimpiade Sains Internasional</span>
+            <span>Pemerintah tingkatkan beasiswa santri berprestasi 2026</span>
+            <span>Pesantren Tebuireng gelar Mahasantri Fest 2026</span>
+            <span>KH. Ahmad Mustofa Bisri terima penghargaan tokoh dakwah nasional</span>
+            <span>Santri Pondok Modern Darussalam menang Olimpiade Sains Internasional</span>
+            <span>Pemerintah tingkatkan beasiswa santri berprestasi 2026</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Berita Featured -->
+    <section>
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-tag">Berita Terkini</span>
+          <h2>Headline Hari Ini</h2>
+          <p>Berita pilihan dari dunia pesantren dan Islam Nusantara</p>
+        </div>
+
+        <div class="berita-grid reveal">
+          <!-- Main featured -->
+          <article class="card card-featured" onclick="goPage('berita');return false;">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/36463780/pexels-photo-36463780.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Santri mengaji" />
+              <span class="card-category">Berita Utama</span>
+            </div>
+            <div class="card-body">
+              <h3>Pesantren Tebuireng Gelar Mahasantri Fest 2026, Ribuan Santri Berlomba</h3>
+              <p>Festival tahunan yang menggelar lomba tahfiz, debat, kaligrafi, dan karya inovasi sains ini diikuti lebih dari 120 pesantren dari seluruh Indonesia.</p>
+              <div class="card-meta">
+                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> 2 jam lalu</span>
+                <span>· oleh Ahmad Fauzi</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Side news -->
+          <div class="berita-side">
+            <article class="card-small" onclick="goPage('berita');return false;">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/34123513/pexels-photo-34123513.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Jamaah masjid" /></div>
+              <div class="card-small-body">
+                <h4>Ribuan Jamaah Penuhi Masjid Agung untuk Salat Tarawih Perdana</h4>
+                <div class="card-meta"><span>5 jam lalu</span><span>· Nasional</span></div>
+              </div>
+            </article>
+            <article class="card-small" onclick="goPage('berita');return false;">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/36493690/pexels-photo-36493690.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pemuda muslim berdiskusi" /></div>
+              <div class="card-small-body">
+                <h4>Santri Pondok Modern Darussalam Raih Medali Emas Olimpiade Sains</h4>
+                <div class="card-meta"><span>8 jam lalu</span><span>· Pendidikan</span></div>
+              </div>
+            </article>
+            <article class="card-small" onclick="goPage('berita');return false;">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/8164398/pexels-photo-8164398.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pria berdoa di masjid" /></div>
+              <div class="card-small-body">
+                <h4>Pemerintah Tingkatkan Kuota Beasiswa Santri Berprestasi 2026</h4>
+                <div class="card-meta"><span>1 hari lalu</span><span>· Nasional</span></div>
+              </div>
+            </article>
+            <article class="card-small" onclick="goPage('berita');return false;">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/40053945/pexels-photo-40053945.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Masjid Paris" /></div>
+              <div class="card-small-body">
+                <h4>Forum Pesantren Dunia Sepakati Kerja Sama Pertukaran Santri Antar Negara</h4>
+                <div class="card-meta"><span>1 hari lalu</span><span>· Internasional</span></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Artikel -->
+    <section class="artikel-section">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-tag">Artikel Pilihan</span>
+          <h2>Tulisan & Artikel</h2>
+          <p>Refleksi, kajian, dan wawasan keislaman dari para ulama dan santri</p>
+        </div>
+
+        <div class="artikel-grid reveal">
+          <article class="card" onclick="goPage('artikel');return false;">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/39701530/pexels-photo-39701530.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Santri membaca Al-Quran" />
+              <span class="card-category">Tadabbur</span>
+            </div>
+            <div class="card-body">
+              <h3>Membaca Al-Quran dengan Hati yang Hadir</h3>
+              <p>Bagaimana seorang muslim dapat memaknai kandungan Al-Quran tidak hanya dengan lisan, tetapi juga dengan kehadiran hati.</p>
+              <div class="card-meta"><span>3 hari lalu</span><span>· 5 menit baca</span></div>
+            </div>
+          </article>
+
+          <article class="card" onclick="goPage('artikel');return false;">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/36468117/pexels-photo-36468117.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Guru mengajar santri" />
+              <span class="card-category gold">Pendidikan</span>
+            </div>
+            <div class="card-body">
+              <h3>Tarbiyah Islamiyah: Mendidik dengan Keteladanan</h3>
+              <p>Konsep pendidikan Islam yang menempatkan akhlak guru sebagai kurikulum utama dalam pembentukan karakter santri.</p>
+              <div class="card-meta"><span>4 hari lalu</span><span>· 7 menit baca</span></div>
+            </div>
+          </article>
+
+          <article class="card" onclick="goPage('artikel');return false;">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/40053949/pexels-photo-40053949.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Menara masjid" />
+              <span class="card-category">Sejarah</span>
+            </div>
+            <div class="card-body">
+              <h3>Jejak Wali Songo: Penyebaran Islam di Nusantara</h3>
+              <p>Menelusuri perjalanan dakwah para wali yang menanamkan Islam di tanah Jawa dengan pendekatan budaya dan toleransi.</p>
+              <div class="card-meta"><span>1 minggu lalu</span><span>· 10 menit baca</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Opini -->
+    <section>
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-tag">Opini & Pandangan</span>
+          <h2>Suara Santri & Cendekiawan</h2>
+          <p>Perspektif tajam dari tokoh pesantren dan intelektual muslim</p>
+        </div>
+
+        <div class="opini-grid reveal">
+          <article class="opini-card" onclick="goPage('opini');return false;">
+            <div class="opini-quote">"</div>
+            <h3>Santri dan Tantangan Era Digital</h3>
+            <p>Digitalisasi bukan ancaman bagi pesantren, justru peluang besar untuk menyebarkan nilai-nilai keislaman ke seluruh penjuru dunia. Yang dibutuhkan adalah strategi adaptasi yang tepat.</p>
+            <div class="opini-author">
+              <div class="opini-avatar">AB</div>
+              <div class="opini-author-info">
+                <strong>Abdullah Hakim</strong>
+                <span>Pengasuh Pondok Modern</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="opini-card" onclick="goPage('opini');return false;">
+            <div class="opini-quote">"</div>
+            <h3>Menjadi Generasi Qurani di Abad ke-21</h3>
+            <p>Generasi muda muslim hari ini harus mampu menjadikan Al-Quran sebagai panduan hidup sekaligus motor penggerak peradaban. Bukan sekadar hafal, tapi mempraktikkan.</p>
+            <div class="opini-author">
+              <div class="opini-avatar">SR</div>
+              <div class="opini-author-info">
+                <strong>Siti Rohmah</strong>
+                <span>Dosen Studi Islam</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Inspirasi -->
+    <section class="inspirasi-section">
+      <div class="container">
+        <div class="section-title reveal">
+          <span class="section-tag">Kisah Inspiratif</span>
+          <h2>Inspirasi & Motivasi</h2>
+          <p>Cerita nyata yang menggerakkan hati dan menyemangati langkah</p>
+        </div>
+
+        <div class="inspirasi-grid reveal">
+          <article class="inspirasi-card" onclick="goPage('inspirasi');return false;">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/33750570/pexels-photo-33750570.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Anak membaca Al-Quran di luar ruangan" />
+              <span class="card-category">Kisah Santri</span>
+            </div>
+            <div class="card-body">
+              <h3>Dari Anak Tani Menjadi Hafiz Al-Quran</h3>
+              <p>Kisah Ahmad, seorang anak dari desa terpencil yang berhasil menghafal 30 juz Al-Quran sambil membantu orang tuanya di sawah.</p>
+              <div class="card-meta"><span>2 hari lalu</span><span>· Inspirasi</span></div>
+            </div>
+          </article>
+
+          <article class="inspirasi-card" onclick="goPage('inspirasi');return false;">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/36507502/pexels-photo-36507502.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Orang membaca Al-Quran di masjid" />
+              <span class="card-category">Motivasi</span>
+            </div>
+            <div class="card-body">
+              <h3>Sabar adalah Senjata Seorang Mukmin</h3>
+              <p>Refleksi mendalam tentang bagaimana kesabaran menentukan kekuatan iman dan membuka pintu rahmat Allah SWT.</p>
+              <div class="card-meta"><span>5 hari lalu</span><span>· Inspirasi</span></div>
+            </div>
+          </article>
+
+          <article class="inspirasi-card" onclick="goPage('inspirasi');return false;">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/36495071/pexels-photo-36495071.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pria berdoa dalam masjid" />
+              <span class="card-category">Kisah</span>
+            </div>
+            <div class="card-body">
+              <h3>Ustadz Kecil yang Mengubah Satu Desa</h3>
+              <p>Cerita tentang seorang santri muda yang pulang ke kampung dan menggerakkan majelis ta'lim hingga seluruh desa berubah.</p>
+              <div class="card-meta"><span>1 minggu lalu</span><span>· Inspirasi</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section style="padding-top:0;">
+      <div class="container">
+        <div class="newsletter reveal">
+          <h2>Dapatkan Update Harian</h2>
+          <p>Berlangganan newsletter untuk menerima berita dan inspirasi terbaru langsung ke email Anda.</p>
+          <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" placeholder="Masukkan alamat email Anda" required />
+            <button type="submit">Berlangganan</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ============ BERITA PAGE ================= -->
+  <!-- ========================================== -->
+  <div class="page" id="page-berita">
+    <div class="page-header">
+      <div class="container">
+        <h1>Berita</h1>
+        <p>Kabar terkini dari dunia pesantren dan Islam Nusantara</p>
+        <div class="breadcrumb"><a href="#" onclick="goPage('home');return false;">Home</a> <span>/</span> <span>Berita</span></div>
+      </div>
+    </div>
+
+    <section>
+      <div class="container">
+        <div class="berita-grid reveal">
+          <article class="card card-featured">
+            <div class="card-image">
+              <img src="https://images.pexels.com/photos/36463780/pexels-photo-36463780.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Santri mengaji" />
+              <span class="card-category">Berita Utama</span>
+            </div>
+            <div class="card-body">
+              <h3>Pesantren Tebuireng Gelar Mahasantri Fest 2026, Ribuan Santri Berlomba</h3>
+              <p>Festival tahunan yang menggelar lomba tahfiz, debat, kaligrafi, dan karya inovasi sains ini diikuti lebih dari 120 pesantren dari seluruh Indonesia.</p>
+              <div class="card-meta"><span>2 jam lalu</span><span>· oleh Ahmad Fauzi</span></div>
+            </div>
+          </article>
+          <div class="berita-side">
+            <article class="card-small">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/34123513/pexels-photo-34123513.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Jamaah masjid" /></div>
+              <div class="card-small-body"><h4>Ribuan Jamaah Penuhi Masjid Agung untuk Salat Tarawih Perdana</h4><div class="card-meta"><span>5 jam lalu</span></div></div>
+            </article>
+            <article class="card-small">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/36493690/pexels-photo-36493690.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pemuda muslim" /></div>
+              <div class="card-small-body"><h4>Santri Pondok Modern Darussalam Raih Medali Emas Olimpiade Sains</h4><div class="card-meta"><span>8 jam lalu</span></div></div>
+            </article>
+            <article class="card-small">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/8164398/pexels-photo-8164398.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pria berdoa" /></div>
+              <div class="card-small-body"><h4>Pemerintah Tingkatkan Kuota Beasiswa Santri Berprestasi 2026</h4><div class="card-meta"><span>1 hari lalu</span></div></div>
+            </article>
+            <article class="card-small">
+              <div class="card-small-img"><img src="https://images.pexels.com/photos/40053945/pexels-photo-40053945.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Masjid" /></div>
+              <div class="card-small-body"><h4>Forum Pesantren Dunia Sepakati Kerja Sama Pertukaran Santri</h4><div class="card-meta"><span>1 hari lalu</span></div></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="artikel-grid reveal" style="margin-top:24px;">
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/36493691/pexels-photo-36493691.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pemuda muslim belajar" /><span class="card-category">Pendidikan</span></div>
+            <div class="card-body"><h3>Pesantren Digital: Mengintegrasi Teknologi dalam Pembelajaran Fiqh</h3><p>Pesantren di Jawa Timur memprakarsai penggunaan tablet dan aplikasi interaktif untuk pembelajaran kitab kuning.</p><div class="card-meta"><span>2 hari lalu</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/12772601/pexels-photo-12772601.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pria berdoa" /><span class="card-category">Nasional</span></div>
+            <div class="card-body"><h3>Muktamar NU Bahas Penguatan Ekonomi Santri di Era Digital</h3><p>Pengurus Besar Nahdlatul Ulama menyelenggarakan muktamar untuk merumuskan strategi kemandirian ekonomi pesantren.</p><div class="card-meta"><span>3 hari lalu</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/40053949/pexels-photo-40053949.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Menara masjid" /><span class="card-category">Internasional</span></div>
+            <div class="card-body"><h3>Delegasi Santri Indonesia Tampil di Konferensi Pemuda Muslim Istanbul</h3><p>Lima santri mewakili Indonesia dalam konferensi internasional yang membahas isu kepemudaan Islam global.</p><div class="card-meta"><span>4 hari lalu</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ============ ARTIKEL PAGE ================ -->
+  <!-- ========================================== -->
+  <div class="page" id="page-artikel">
+    <div class="page-header">
+      <div class="container">
+        <h1>Artikel</h1>
+        <p>Kajian, refleksi, dan wawasan keislaman mendalam</p>
+        <div class="breadcrumb"><a href="#" onclick="goPage('home');return false;">Home</a> <span>/</span> <span>Artikel</span></div>
+      </div>
+    </div>
+
+    <section class="artikel-section">
+      <div class="container">
+        <div class="artikel-grid reveal">
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/39701530/pexels-photo-39701530.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Santri membaca Quran" /><span class="card-category">Tadabbur</span></div>
+            <div class="card-body"><h3>Membaca Al-Quran dengan Hati yang Hadir</h3><p>Bagaimana seorang muslim dapat memaknai kandungan Al-Quran tidak hanya dengan lisan, tetapi juga dengan kehaduran hati.</p><div class="card-meta"><span>3 hari lalu</span><span>· 5 menit baca</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/36468117/pexels-photo-36468117.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Guru mengajar" /><span class="card-category gold">Pendidikan</span></div>
+            <div class="card-body"><h3>Tarbiyah Islamiyah: Mendidik dengan Keteladanan</h3><p>Konsep pendidikan Islam yang menempatkan akhlak guru sebagai kurikulum utama dalam pembentukan karakter santri.</p><div class="card-meta"><span>4 hari lalu</span><span>· 7 menit baca</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/40053949/pexels-photo-40053949.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Menara masjid" /><span class="card-category">Sejarah</span></div>
+            <div class="card-body"><h3>Jejak Wali Songo: Penyebaran Islam di Nusantara</h3><p>Menelusuri perjalanan dakwah para wali yang menanamkan Islam di tanah Jawa dengan pendekatan budaya dan toleransi.</p><div class="card-meta"><span>1 minggu lalu</span><span>· 10 menit baca</span></div></div>
+          </article>
+        </div>
+
+        <div class="artikel-grid reveal" style="margin-top:24px;">
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/8164742/pexels-photo-8164742.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Anak mengaji" /><span class="card-category">Fikih</span></div>
+            <div class="card-body"><h3>Memahami Hukum Tajwid: Panduan Praktis untuk Pemula</h3><p>Penjelasan ringkas dan praktis tentang hukum-hukum tajwid yang wajib diketahui setiap muslim dalam membaca Al-Quran.</p><div class="card-meta"><span>1 minggu lalu</span><span>· 8 menit baca</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/40053969/pexels-photo-40053969.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Interior masjid" /><span class="card-category">Akhlak</span></div>
+            <div class="card-body"><h3>Adab Santri kepada Guru: Warisan Para Salaf</h3><p>Bagaimana adab dan sopan santun santri terhadap guru menjadi kunci utama dalam menimba ilmu yang berkah.</p><div class="card-meta"><span>2 minggu lalu</span><span>· 6 menit baca</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/40053891/pexels-photo-40053891.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Arsitektur islami" /><span class="card-category">Kebudayaan</span></div>
+            <div class="card-body"><h3>Seni Kaligrafi Islam: Keindahan dalam Penulisan Kalam Ilahi</h3><p>Menelusuri sejarah dan perkembangan seni kaligrafi Islam yang menjadi salah satu warisan budaya terindah umat.</p><div class="card-meta"><span>2 minggu lalu</span><span>· 9 menit baca</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ============ OPINI PAGE ================== -->
+  <!-- ========================================== -->
+  <div class="page" id="page-opini">
+    <div class="page-header">
+      <div class="container">
+        <h1>Opini</h1>
+        <p>Perspektif dan pandangan dari tokoh pesantren serta cendekiawan muslim</p>
+        <div class="breadcrumb"><a href="#" onclick="goPage('home');return false;">Home</a> <span>/</span> <span>Opini</span></div>
+      </div>
+    </div>
+
+    <section>
+      <div class="container">
+        <div class="opini-grid reveal">
+          <article class="opini-card">
+            <div class="opini-quote">"</div>
+            <h3>Santri dan Tantangan Era Digital</h3>
+            <p>Digitalisasi bukan ancaman bagi pesantren, justru peluang besar untuk menyebarkan nilai-nilai keislaman ke seluruh penjuru dunia. Yang dibutuhkan adalah strategi adaptasi yang tepat.</p>
+            <div class="opini-author"><div class="opini-avatar">AB</div><div class="opini-author-info"><strong>Abdullah Hakim</strong><span>Pengasuh Pondok Modern</span></div></div>
+          </article>
+          <article class="opini-card">
+            <div class="opini-quote">"</div>
+            <h3>Menjadi Generasi Qurani di Abad ke-21</h3>
+            <p>Generasi muda muslim hari ini harus mampu menjadikan Al-Quran sebagai panduan hidup sekaligus motor penggerak peradaban. Bukan sekadar hafal, tapi mempraktikkan.</p>
+            <div class="opini-author"><div class="opini-avatar">SR</div><div class="opini-author-info"><strong>Siti Rohmah</strong><span>Dosen Studi Islam</span></div></div>
+          </article>
+          <article class="opini-card">
+            <div class="opini-quote">"</div>
+            <h3>Pesantren sebagai Inkubator Kewirausahaan Muslim</h3>
+            <p>Pesantren harus bertransformasi menjadi pusat pengembangan ekonomi umat. Santri tidak hanya pintar mengaji, tapi juga piawai berdagang dan berinovasi.</p>
+            <div class="opini-author"><div class="opini-avatar">MH</div><div class="opini-author-info"><strong>Muhammad Hidayat</strong><span>Pengusaha Muslim</span></div></div>
+          </article>
+          <article class="opini-card">
+            <div class="opini-quote">"</div>
+            <h3>Membangun Peradaban Islam yang Ramah dan Inklusif</h3>
+            <p>Islam Nusantara telah membuktikan bahwa dakwah yang damai dan menghormati keberagaman mampu menanamkan akar keimanan yang kuat dan langgeng.</p>
+            <div class="opini-author"><div class="opini-avatar">FN</div><div class="opini-author-info"><strong>Fatimah Nur</strong><span>Peneliti Islam Kontemporer</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- ============ INSPIRASI PAGE ============== -->
+  <!-- ========================================== -->
+  <div class="page" id="page-inspirasi">
+    <div class="page-header">
+      <div class="container">
+        <h1>Inspirasi</h1>
+        <p>Kisah nyata dan motivasi yang menggerakkan hati</p>
+        <div class="breadcrumb"><a href="#" onclick="goPage('home');return false;">Home</a> <span>/</span> <span>Inspirasi</span></div>
+      </div>
+    </div>
+
+    <section class="inspirasi-section" style="background:var(--cream); color:var(--ink-900);">
+      <div class="container">
+        <div class="inspirasi-grid reveal" style="gap:24px;">
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/33750570/pexels-photo-33750570.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Anak mengaji" /><span class="card-category gold">Kisah Santri</span></div>
+            <div class="card-body"><h3>Dari Anak Tani Menjadi Hafiz Al-Quran</h3><p>Kisah Ahmad, seorang anak dari desa terpencil yang berhasil menghafal 30 juz Al-Quran sambil membantu orang tuanya di sawah.</p><div class="card-meta"><span>2 hari lalu</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/36507502/pexels-photo-36507502.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Mengaji di masjid" /><span class="card-category gold">Motivasi</span></div>
+            <div class="card-body"><h3>Sabar adalah Senjata Seorang Mukmin</h3><p>Refleksi mendalam tentang bagaimana kesabaran menentukan kekuatan iman dan membuka pintu rahmat Allah SWT.</p><div class="card-meta"><span>5 hari lalu</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/36495071/pexels-photo-36495071.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pria berdoa" /><span class="card-category gold">Kisah</span></div>
+            <div class="card-body"><h3>Ustadz Kecil yang Mengubah Satu Desa</h3><p>Cerita tentang seorang santri muda yang pulang ke kampung dan menggerakkan majelis ta'lim hingga seluruh desa berubah.</p><div class="card-meta"><span>1 minggu lalu</span></div></div>
+          </article>
+        </div>
+
+        <div class="inspirasi-grid reveal" style="gap:24px; margin-top:24px;">
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/8164742/pexels-photo-8164742.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Anak hijab mengaji" /><span class="card-category gold">Kisah</span></div>
+            <div class="card-body"><h3> Gadis Kecil yang Hafal Juz 30 dalam Tiga Bulan</h3><p>Kisah Aisyah, gadis berusia 8 tahun yang menghafal juz 30 Al-Quran dalam waktu singkat berkat konsistensi dan doa kedua orang tua.</p><div class="card-meta"><span>1 minggu lalu</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/20627703/pexels-photo-20627703.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pria mengaji" /><span class="card-category gold">Motivasi</span></div>
+            <div class="card-body"><h3>Bangun dari Keterpurukan: Kisih Santri Yatim Jadi Sarjana</h3><p>Dari panti asuhan ke bangku kuliah, kisah perjuangan seorang santri yatim yang tidak menyerah pada keadaan dan terus menuntut ilmu.</p><div class="card-meta"><span>2 minggu lalu</span></div></div>
+          </article>
+          <article class="card">
+            <div class="card-image"><img src="https://images.pexels.com/photos/7956662/pexels-photo-7956662.jpeg?auto=compress&cs=tinysrgb&h=650&w=940" alt="Pria berdoa dengan tasbih" /><span class="card-category gold">Refleksi</span></div>
+            <div class="card-body"><h3>Tiga Amalan yang Mengubah Hidup Seorang Santri Tua</h3><p>Seorang kiai berusia 90 tahun membagikan tiga amalan sederhana yang telah menjaga keistiqamahan dan kesehatannya selama puluhan tahun.</p><div class="card-meta"><span>2 minggu lalu</span></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <div class="logo-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 21h18M3 7v14M21 7v14M6 21V11l6-4 6 4v10M9 21v-4h6v4"/>
+                <circle cx="12" cy="8" r="1.5" fill="white" stroke="none"/>
+              </svg>
+            </div>
+            <div class="logo-text">
+              <strong>InfoPesantren</strong>
+              <span>.ONLINE</span>
+            </div>
+          </div>
+          <p>Portal berita dan inspirasi Islami yang menyajikan kabar terkini dari dunia pesantren, artikel kajian, opini cendekiawan, dan kisah inspiratif seputar santri Nusantara.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Menu</h4>
+          <ul>
+            <li><a href="#" onclick="goPage('home');return false;">Home</a></li>
+            <li><a href="#" onclick="goPage('berita');return false;">Berita</a></li>
+            <li><a href="#" onclick="goPage('artikel');return false;">Artikel</a></li>
+            <li><a href="#" onclick="goPage('opini');return false;">Opini</a></li>
+            <li><a href="#" onclick="goPage('inspirasi');return false;">Inspirasi</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Kategori</h4>
+          <ul>
+            <li><a href="#" onclick="goPage('berita');return false;">Nasional</a></li>
+            <li><a href="#" onclick="goPage('berita');return false;">Internasional</a></li>
+            <li><a href="#" onclick="goPage('artikel');return false;">Pendidikan</a></li>
+            <li><a href="#" onclick="goPage('artikel');return false;">Tadabbur</a></li>
+            <li><a href="#" onclick="goPage('inspirasi');return false;">Kisah Santri</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Tentang</h4>
+          <ul>
+            <li><a href="#">ProfiL Redaksi</a></li>
+            <li><a href="#">Pedoman Media</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Hubungi Kami</a></li>
+            <li><a href="#">Iklan</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 <strong>InfoPesantren.online</strong> — Portal Berita & Inspirasi Islami. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    // --- Page Navigation ---
+    function goPage(page) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById('page-' + page);
+      if (target) target.classList.add('active');
+
+      document.querySelectorAll('.nav-menu a').forEach(a => a.classList.remove('active'));
+      const navLink = document.querySelector('.nav-menu a[data-page="' + page + '"]');
+      if (navLink) navLink.classList.add('active');
+
+      // Close mobile menu
+      document.getElementById('navMenu').classList.remove('open');
+      document.getElementById('navToggle').classList.remove('open');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Re-trigger reveal animations
+      setTimeout(initReveal, 100);
+    }
+
+    // --- Mobile Menu Toggle ---
+    function toggleNav() {
+      document.getElementById('navMenu').classList.toggle('open');
+      document.getElementById('navToggle').classList.toggle('open');
+    }
+
+    // --- Newsletter ---
+    function subscribeNewsletter(e) {
+      e.preventDefault();
+      const input = e.target.querySelector('input');
+      const btn = e.target.querySelector('button');
+      btn.textContent = 'Terkirim!';
+      btn.style.background = 'var(--green-500)';
+      input.value = '';
+      setTimeout(() => {
+        btn.textContent = 'Berlangganan';
+        btn.style.background = '';
+      }, 2500);
+    }
+
+    // --- Header scroll shadow ---
+    window.addEventListener('scroll', function() {
+      const header = document.getElementById('header');
+      if (window.scrollY > 10) header.classList.add('scrolled');
+      else header.classList.remove('scrolled');
+    });
+
+    // --- Reveal on scroll ---
+    function initReveal() {
+      const elements = document.querySelectorAll('.reveal');
+      const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      elements.forEach(function(el) {
+        el.classList.remove('visible');
+        observer.observe(el);
+      });
+    }
+
+    // --- Set today's date ---
+    (function() {
+      const days = ['Ahad','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+      const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+      const now = new Date();
+      const dateStr = days[now.getDay()] + ', ' + now.getDate() + ' ' + months[now.getMonth()] + ' ' + now.getFullYear();
+      const el = document.getElementById('todayDate');
+      if (el) el.textContent = dateStr;
+    })();
+
+    // Init
+    initReveal();
+  </script>
+</body>
+</html>
